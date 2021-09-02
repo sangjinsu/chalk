@@ -50,6 +50,29 @@ func TestTextStyle(t *testing.T) {
 		{"\u001b[4mhello\u001b[24m", textStyle.TextStyle("hello")},
 		{"hello", TextStyle{}.TextStyle("hello")},
 	}
+	for _, tc := range tests {
+		assertions.Equalf(tc.expected, tc.actual, "%#v should be %#v", tc.actual, tc.expected)
+	}
+}
+
+func TestStyle(t *testing.T) {
+	assertions := assert.New(t)
+
+	colorStyle := Red.NewStyle()
+	colorStyle.Foreground(ResetColor)
+	colorStyle.Background(ResetColor)
+
+	builtStyle := Red.NewStyle().
+		WithForeground(Red).
+		WithBackground(Blue).
+		WithTextStyle(Underline)
+
+	tests := []test{
+		{"\u001b[40m\u001b[31m", Red.NewStyle().String()},
+		{"\u001b[40m\u001b[30m\u001b[1mhello\u001b[22m\u001b[49m\u001b[39m", Bold.NewStyle().Style("hello")},
+		{"\u001b[49m\u001b[39m", colorStyle.String()},
+		{"\u001b[44m\u001b[31m\u001b[4mhello\u001b[24m\u001b[49m\u001b[39m", builtStyle.Style("hello")},
+	}
 
 	for _, tc := range tests {
 		assertions.Equalf(tc.expected, tc.actual, "%#v should be %#v", tc.actual, tc.expected)
