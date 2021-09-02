@@ -59,6 +59,10 @@ func (c Color) String() string {
 	return fmt.Sprintf("\u001b[%dm", 30+c.value)
 }
 
+func (c Color) NewStyle() Style {
+	return &style{foreground: c}
+}
+
 type BrightColor struct {
 	Color
 }
@@ -146,5 +150,5 @@ func (s *style) WithTextStyle(textStyle TextStyle) Style {
 }
 
 func (s *style) String() string {
-	return fmt.Sprintf("\u001b[%dm", 40+s.background.Value()) + fmt.Sprintf("\u001b[%dm", 30+s.foreground.Value())
+	return fmt.Sprintf("\u001b[%dm\u001b[%dm", 40+s.background.Value(), 30+s.foreground.Value())
 }
