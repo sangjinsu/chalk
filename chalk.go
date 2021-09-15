@@ -43,7 +43,6 @@ var (
 	}
 )
 
-
 type Color struct {
 	value int
 }
@@ -68,20 +67,8 @@ type BrightColor struct {
 	Color
 }
 
-func (bc BrightColor) Value() int {
-	return bc.value
-}
-
-func (bc BrightColor) Set(value string) string {
-	return fmt.Sprintf("%s%s%s", bc, value, ResetColor)
-}
-
 func (bc BrightColor) String() string {
 	return fmt.Sprintf("\u001b[%dm", 90+bc.value)
-}
-
-func (bc BrightColor) NewStyle() Style {
-	return &style{foreground: bc.Color}
 }
 
 type textStyleDemarcation int
