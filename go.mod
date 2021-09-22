@@ -1,4 +1,4 @@
-module github.com/chalk
+module github.com/jinsuSang/chalk
 
 go 1.16
 

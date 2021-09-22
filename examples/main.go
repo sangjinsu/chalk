@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/chalk"
+	"github.com/jinsuSang/chalk"
 )
 
 func main() {

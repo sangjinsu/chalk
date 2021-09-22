@@ -1,12 +1,15 @@
 // Package chalk https://github.com/ttacon/chalk
 // Copyright (c) 2014 Trey Tacon
 // The MIT License (MIT)
+
+// Package chalk 는 터미널 및 콘솔 출력을 꾸며주는 패키지로 ttacon/chalk 패키지를 기반으로 제작되었습니다.
 package chalk
 
 import (
 	"fmt"
 )
 
+// 글자색, 모양(굵게, 이탤릭, 흐릿하게 ...)을 나타내는 변수입니다.
 var (
 	Black      = Color{0}
 	Red        = Color{1}
@@ -43,6 +46,7 @@ var (
 	}
 )
 
+// Color 는 기본적으로 제공되는 색을 나타냅니다.
 type Color struct {
 	value int
 }
@@ -51,22 +55,27 @@ func (c Color) Value() int {
 	return c.value
 }
 
+// Set 은 문자열의 해당 색으로 변경하는데 사용됩니다.
 func (c Color) Set(value string) string {
 	return fmt.Sprintf("%s%s%s", c, value, ResetColor)
 }
 
+// String 함수는 값에 30을 더해 밝을 색을 표현합니다.
 func (c Color) String() string {
 	return fmt.Sprintf("\u001b[%dm", 30+c.value)
 }
 
+// NewStyle 은 새로운 스타일을 만들어 냅니다. ex) chalk.BrightRed.NewStyle().WithBackground(chalk.White)
 func (c Color) NewStyle() Style {
 	return &style{foreground: c}
 }
 
+// BrightColor 는 Color 구조체를 embedding 하며 밝은 색을 나타냅니다.
 type BrightColor struct {
 	Color
 }
 
+// String 함수는 값에 90을 더해 밝을 색을 표현합니다.
 func (bc BrightColor) String() string {
 	return fmt.Sprintf("\u001b[%dm", 90+bc.value)
 }
