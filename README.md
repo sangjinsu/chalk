@@ -6,7 +6,7 @@
 
 - ttacon 의  chalk  모듈을 기반으로 제작된 패키지 입니다.
 
-## 사용법
+## Examples
 
 ![image-20210902231614451](README.assets/image-20210902231614451.png)
 
