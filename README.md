@@ -5,6 +5,7 @@
 > The MIT License (MIT)
 
 - ttacon 의  chalk  모듈을 기반으로 제작된 패키지 입니다.
+- 자세한 내용은 https://pkg.go.dev/github.com/jinsuSang/chalk 문서를 참조하세요.
 
 ## Examples
 
